@@ -1,6 +1,7 @@
 {
   "version": "0.2.0",
   "configurations": [
+    {"name":"Python Debugger: Current File","type":"debugpy","request":"launch","program":"${file}","console":"integratedTerminal"},
     {
       "name": "Python Debugger: Current File",
       "type": "debugpy",
@@ -21,7 +22,7 @@
     {
       // Python: run current file in the selected interpreter
       "name": "Python Debugger: Current File",
-      "type": "python",
+      "type": "debugpy",
       "request": "launch",
       "program": "${file}",
       "console": "integratedTerminal",
@@ -32,7 +33,7 @@
     {
       // Launch the Django backend using the Python extension debug adapter
       "name": "Launch Django Backend",
-      "type": "python",
+      "type": "debugpy",
       "request": "launch",
       "program": "${workspaceFolder}/octofit-tracker/backend/manage.py",
       "args": [
