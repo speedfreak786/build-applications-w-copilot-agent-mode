@@ -2,30 +2,55 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Launch Program",
+      "program": "${workspaceFolder}/app.js",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node"
+    },
+    {
+      "name": "Python Debugger: Current File",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal"
+    },
+    {
+      // Launch the Django backend using the Python extension debug adapter
       "name": "Launch Django Backend",
-      "type": "python",
+      "type": "debugpy",
       "request": "launch",
       "program": "${workspaceFolder}/octofit-tracker/backend/manage.py",
-      "args": ["runserver", "0.0.0.0:8000"],
+      "args": [
+        "runserver",
+        "0.0.0.0:8000"
+      ],
       "django": true,
       "justMyCode": true,
-      "python": "${workspaceFolder}/octofit-tracker/backend/venv/bin/python",
+      // Use the interpreter selected in VS Code (falls back to system python)
+      "python": "${command:python.interpreterPath}",
+      "console": "integratedTerminal",
       "env": {
-        "PYTHONPATH": "${workspaceFolder}/octofit-tracker/backend/venv/bin/python",
+        "PYTHONPATH": "${workspaceFolder}/octofit-tracker/backend",
         "VIRTUAL_ENV": "${workspaceFolder}/octofit-tracker/backend/venv",
-        "PATH": "${workspaceFolder}/octofit-tracker/backend/venv/bin:${env:PATH}"
+        "PATH": "${workspaceFolder}/octofit-tracker/backend/venv/bin:${env:PATH}",
+        "DJANGO_SETTINGS_MODULE": "octofit_site.settings"
       }
     },
     {
+      // Launch the React frontend using npm start
       "name": "Launch React Frontend",
       "type": "node",
       "request": "launch",
-      "program": "${workspaceFolder}/octofit-tracker/frontend/node_modules/react-scripts/scripts/start.js",
       "cwd": "${workspaceFolder}/octofit-tracker/frontend",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["start"],
-      "port": 3000,
+      "runtimeArgs": [
+        "start"
+      ],
       "env": {
+        "PORT": "3000",
         "REACT_APP_CODESPACE_NAME": "${env:CODESPACE_NAME}"
       }
     }
