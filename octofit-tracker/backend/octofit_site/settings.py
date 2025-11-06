@@ -52,8 +52,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'octofit_db',
-        # For local development leave host default (mongod on localhost:27017)
-        # 'CLIENT': {'host': 'mongodb://localhost:27017'},
+        # For local development use MONGO_URI env var or default to localhost
+        'CLIENT': {
+            'host': os.environ.get('MONGO_URI', 'mongodb://localhost:27017'),
+        },
     }
 }
 
