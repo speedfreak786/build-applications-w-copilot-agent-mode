@@ -2,6 +2,14 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Python Debugger: Current File",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal"
+    },
+    {
+      // ...existing code...
       "name": "Launch Program",
       "program": "${workspaceFolder}/app.js",
       "request": "launch",
@@ -11,16 +19,20 @@
       "type": "node"
     },
     {
+      // Python: run current file in the selected interpreter
       "name": "Python Debugger: Current File",
-      "type": "debugpy",
+      "type": "python",
       "request": "launch",
       "program": "${file}",
-      "console": "integratedTerminal"
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      // let VS Code resolve the interpreter (avoid hardcoding venv path)
+      "python": "${command:python.interpreterPath}"
     },
     {
       // Launch the Django backend using the Python extension debug adapter
       "name": "Launch Django Backend",
-      "type": "debugpy",
+      "type": "python",
       "request": "launch",
       "program": "${workspaceFolder}/octofit-tracker/backend/manage.py",
       "args": [
